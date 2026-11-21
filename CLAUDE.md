@@ -4,13 +4,13 @@ Guidance for Claude Code when working in this repository.
 
 ## Project
 
-flux is the shared findings layer for the cschooley security toolkit
+flux is the shared findings layer for Kudzu
 (scurf, spall, taphttp, sarifview, sec-actions, ghas-actions, Kudzu).
 It is two things:
 
 1. **A spec** (`SPEC.md`): a profile of SARIF 2.1.0. Not a new schema.
 2. **A Rust crate**: the one set of finding types, fingerprinting,
-   redaction, and validation every Rust tool in the suite depends on.
+   redaction, and validation every Rust tool in Kudzu depends on.
 
 `SPEC.md` is the source of truth. If code and spec disagree, the spec
 wins until someone deliberately changes the spec.
@@ -35,7 +35,7 @@ wins until someone deliberately changes the spec.
 
 ## Testing
 
-TDD, same as the rest of the suite:
+TDD, same as the rest of Kudzu:
 
 - Test first. No behavior ships without a test that would catch its
   regression.
