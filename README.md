@@ -10,12 +10,13 @@ flux is also the Rust crate every Rust tool in Kudzu uses for findings, so none 
 
 - `Finding` (a SARIF `result`) and `Report` (a SARIF log), read and written as SARIF with serde. The `flux/` properties are typed fields; SARIF fields the crate doesn't model are kept as they were.
 - `fingerprint::dast_v1` / `sast_v1`: the frozen fingerprint algorithms.
-- `validate::validate`: the profile's rules beyond SARIF's schema.
+- `validate::validate`: the profile's rules beyond SARIF's schema, including that a document marked redacted has nothing left to redact.
+- `redact::redact_finding` / `redact_report` / `preview`: what every producer runs before a document leaves its store (SPEC.md, "Redaction"). Secrets become `[REDACTED:<kind>]` and the finding is marked `flux/redacted: true`.
 - `examples/`: a golden file for each flow in the spec. Every one is checked against the official SARIF 2.1.0 schema, the flux rules, and an exact round trip.
 
 ```toml
 [dependencies]
-flux = { git = "https://github.com/cschooley/flux", tag = "v0.1.0" }
+flux = { git = "https://github.com/cschooley/flux", tag = "v0.2.0" }
 ```
 
 ```rust
@@ -33,7 +34,7 @@ let report = Report::new(ToolComponent::tool("spall", "0.4.0"), vec![f]);
 assert!(flux::validate::validate(&report).is_empty());
 ```
 
-Not yet: redaction (next), a validator CLI.
+Not yet: a validator CLI.
 
 ## Development
 

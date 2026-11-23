@@ -50,16 +50,17 @@ TDD, same as the rest of Kudzu:
 
 ## Status
 
-Spec draft v0.4. Crate v0.1.0: `Finding` / `Report` (SARIF round-trip,
+Spec draft v0.5. Crate v0.2.0: `Finding` / `Report` (SARIF round-trip,
 unknown fields kept), `flux/dast/v1` and `flux/sast/v1` fingerprints,
-`validate` (the flux rules; SARIF schema validation runs in the tests
-against `schema/sarif-schema-2.1.0.json`), and golden `examples/`.
+`validate` (the flux rules, including "claims redacted but isn't";
+SARIF schema validation runs in the tests against
+`schema/sarif-schema-2.1.0.json`), `redact` (headers by name; JWT,
+bearer, API-key formats, URL passwords, sensitive names in pairs and
+JSON; binary bodies dropped; idempotent), and golden `examples/`.
 Next:
 
-1. Redaction (headers, bodies, URLs; JWT / bearer / API-key patterns),
-   with tests for each.
-2. Validator CLI (and a runtime SARIF schema check behind a feature).
-3. `schema/flux-properties.schema.json`.
+1. Validator CLI (and a runtime SARIF schema check behind a feature).
+2. `schema/flux-properties.schema.json`.
 
 Dependencies: core is `serde`, `serde_json`, `sha2` only. New ones
 (transitive included) at least two weeks old; pin with

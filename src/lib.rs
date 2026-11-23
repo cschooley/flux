@@ -3,13 +3,14 @@
 //! The one set of finding types every Rust tool in Kudzu uses: a
 //! [`Finding`] is a SARIF `result`, a [`Report`] is a SARIF log, and serde
 //! reads and writes them as SARIF. Fingerprints ([`fingerprint`]) and the
-//! profile's rules ([`validate`]) live here so producers agree on them.
-//! Redaction comes next (SPEC.md, "Redaction").
+//! profile's rules ([`validate`]) live here so producers agree on them, as
+//! does redaction ([`redact`]), so no producer exports without it.
 
 #![forbid(unsafe_code)]
 
 mod finding;
 pub mod fingerprint;
+pub mod redact;
 mod report;
 pub mod validate;
 

@@ -1,6 +1,6 @@
 [package]
 name = "flux"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 rust-version = "1.90"
 description = "flux: a SARIF 2.1.0 profile for Kudzu. Finding types, fingerprints and validation."

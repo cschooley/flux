@@ -151,6 +151,15 @@ fn finding(run: &Run, f: &Finding, at: &str, bad: &mut impl FnMut(String, &str))
             "DAST evidence needs an endpoint location",
         );
     }
+    // A document that claims to be redacted has nothing left to redact.
+    if f.properties.redacted == Some(true) {
+        for c in crate::redact::preview(f).1 {
+            bad(
+                format!("{at}.{}", c.at),
+                &format!("claims flux/redacted but still has a {}", c.kind),
+            );
+        }
+    }
 }
 
 fn is_sha256_hex(s: &str) -> bool {
@@ -320,6 +329,23 @@ mod tests {
                 "runs[0].tool.driver.rules[2].id: is required",
             ]
         );
+    }
+
+    #[test]
+    fn a_redacted_claim_is_checked() {
+        let mut f = good();
+        f.message.text = "session eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ4In0.c2ln".into();
+        f.properties.redacted = Some(true);
+        assert_eq!(
+            problems(f.clone()),
+            vec!["runs[0].results[0].message.text: claims flux/redacted but still has a jwt"]
+        );
+        crate::redact::redact_finding(&mut f);
+        assert!(problems(f.clone()).is_empty());
+        // Unredacted on purpose is valid: consumers decide.
+        f.properties.redacted = Some(false);
+        f.message.text = "password=x".into();
+        assert!(problems(f).is_empty());
     }
 
     #[test]
