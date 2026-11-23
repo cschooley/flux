@@ -50,7 +50,7 @@ TDD, same as the rest of Kudzu:
 
 ## Status
 
-Spec draft v0.5. Crate v0.2.0: `Finding` / `Report` (SARIF round-trip,
+Spec draft v0.5. Crate v0.2.1: `Finding` / `Report` (SARIF round-trip,
 unknown fields kept), `flux/dast/v1` and `flux/sast/v1` fingerprints,
 `validate` (the flux rules, including "claims redacted but isn't";
 SARIF schema validation runs in the tests against

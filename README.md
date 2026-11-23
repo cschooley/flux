@@ -16,7 +16,7 @@ flux is also the Rust crate every Rust tool in Kudzu uses for findings, so none 
 
 ```toml
 [dependencies]
-flux = { git = "https://github.com/cschooley/flux", tag = "v0.2.0" }
+flux = { git = "https://github.com/cschooley/flux", tag = "v0.2.1" }
 ```
 
 ```rust

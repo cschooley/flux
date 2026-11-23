@@ -1,6 +1,6 @@
 # flux: a SARIF 2.1.0 profile for Kudzu
 
-Status: draft v0.5 (Nov 2026). The `flux` crate v0.2.0 implements it (types, fingerprints, validation, redaction).
+Status: draft v0.5 (Nov 2026). The `flux` crate v0.2.1 implements it (types, fingerprints, validation, redaction).
 
 ## What flux is (and isn't)
 
