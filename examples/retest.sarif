@@ -1,0 +1,94 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/errata01/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "spall",
+          "version": "0.4.0",
+          "informationUri": "https://github.com/cschooley/spall",
+          "rules": [
+            {
+              "id": "WSTG-ATHZ-04",
+              "shortDescription": {
+                "text": "Testing for Insecure Direct Object References"
+              },
+              "helpUri": "https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "639",
+                    "toolComponent": {
+                      "name": "CWE"
+                    }
+                  },
+                  "kinds": [
+                    "relevant"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "WSTG-ATHZ-04",
+          "level": "error",
+          "message": {
+            "text": "Retest: another user's order is no longer returned (403)."
+          },
+          "fingerprints": {
+            "flux/dast/v1": "a4f4e1f7bc754c70cb258c1c7d5691d0e19302609b87616b10181b33476e53ba"
+          },
+          "correlationGuid": "8d7e2a61-0f3b-4f5c-b1a9-54c3e2d1f0a7",
+          "baselineState": "absent",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "https://shop.example/api/orders/1001"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "GET",
+                  "kind": "httpMethod"
+                }
+              ]
+            }
+          ],
+          "taxa": [
+            {
+              "id": "639",
+              "toolComponent": {
+                "name": "CWE"
+              }
+            }
+          ],
+          "workItemUris": [
+            "https://github.com/cschooley/shop/issues/12"
+          ],
+          "provenance": {
+            "firstDetectionTimeUtc": "2026-10-02T09:12:00Z",
+            "lastDetectionTimeUtc": "2026-11-23T15:30:00Z"
+          },
+          "properties": {
+            "flux/status": "fixed",
+            "flux/replayIds": [
+              "ex-2210"
+            ],
+            "flux/redacted": true
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "informationUri": "https://cwe.mitre.org/"
+        }
+      ]
+    }
+  ]
+}

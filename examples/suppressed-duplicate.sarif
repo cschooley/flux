@@ -1,0 +1,129 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/errata01/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "spall",
+          "version": "0.4.0",
+          "informationUri": "https://github.com/cschooley/spall",
+          "rules": [
+            {
+              "id": "WSTG-INPV-05",
+              "shortDescription": {
+                "text": "Testing for SQL Injection"
+              },
+              "helpUri": "https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05-Testing_for_SQL_Injection",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "89",
+                    "toolComponent": {
+                      "name": "CWE"
+                    }
+                  },
+                  "kinds": [
+                    "relevant"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "WSTG-INPV-05",
+          "level": "error",
+          "message": {
+            "text": "SQL injection in sort."
+          },
+          "fingerprints": {
+            "flux/dast/v1": "ed0d4304e9344655c823537d0688dd1d7ec7e6c60822e4847263bf781d1e5ff0"
+          },
+          "correlationGuid": "3b0c8f0e-6a52-4c1e-9d0a-2f6a1b7c9e41",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "https://shop.example/api/products/17"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "GET",
+                  "kind": "httpMethod"
+                }
+              ]
+            }
+          ],
+          "taxa": [
+            {
+              "id": "89",
+              "toolComponent": {
+                "name": "CWE"
+              }
+            }
+          ],
+          "properties": {
+            "flux/status": "confirmed"
+          }
+        },
+        {
+          "ruleId": "WSTG-INPV-05",
+          "level": "error",
+          "message": {
+            "text": "SQL injection in q on the product list."
+          },
+          "fingerprints": {
+            "flux/dast/v1": "e694f3b6e02b0014cb29c32ce72693b4f15da45f34c161f1f87620bcc2320ed7"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "https://shop.example/api/products"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "GET",
+                  "kind": "httpMethod"
+                }
+              ]
+            }
+          ],
+          "taxa": [
+            {
+              "id": "89",
+              "toolComponent": {
+                "name": "CWE"
+              }
+            }
+          ],
+          "suppressions": [
+            {
+              "kind": "external",
+              "status": "accepted",
+              "justification": "duplicate of 3b0c8f0e-6a52-4c1e-9d0a-2f6a1b7c9e41: the same query builder, reached through q",
+              "properties": {
+                "flux/disposition": "duplicate",
+                "flux/duplicateOf": "3b0c8f0e-6a52-4c1e-9d0a-2f6a1b7c9e41"
+              }
+            }
+          ],
+          "properties": {
+            "flux/status": "confirmed"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "informationUri": "https://cwe.mitre.org/"
+        }
+      ]
+    }
+  ]
+}

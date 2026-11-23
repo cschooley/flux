@@ -1,0 +1,115 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/errata01/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "spall",
+          "version": "0.4.0",
+          "informationUri": "https://github.com/cschooley/spall",
+          "rules": [
+            {
+              "id": "WSTG-INPV-05",
+              "shortDescription": {
+                "text": "Testing for SQL Injection"
+              },
+              "helpUri": "https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05-Testing_for_SQL_Injection",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "89",
+                    "toolComponent": {
+                      "name": "CWE"
+                    }
+                  },
+                  "kinds": [
+                    "relevant"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "WSTG-INPV-05",
+          "level": "error",
+          "rank": 60,
+          "message": {
+            "text": "A quote in sort breaks the SQL query (database error in the response)."
+          },
+          "fingerprints": {
+            "flux/dast/v1": "ed0d4304e9344655c823537d0688dd1d7ec7e6c60822e4847263bf781d1e5ff0"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "https://shop.example/api/products/17"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "GET",
+                  "kind": "httpMethod"
+                }
+              ]
+            }
+          ],
+          "taxa": [
+            {
+              "id": "89",
+              "toolComponent": {
+                "name": "CWE"
+              }
+            }
+          ],
+          "provenance": {
+            "firstDetectionTimeUtc": "2026-11-23T14:02:11Z",
+            "lastDetectionTimeUtc": "2026-11-23T14:05:40Z"
+          },
+          "webRequest": {
+            "protocol": "HTTP",
+            "version": "1.1",
+            "target": "https://shop.example/api/products/17?sort=price%27",
+            "method": "GET",
+            "headers": {
+              "Host": "shop.example",
+              "Cookie": "[REDACTED:cookie]",
+              "Accept": "application/json"
+            }
+          },
+          "webResponse": {
+            "protocol": "HTTP",
+            "version": "1.1",
+            "statusCode": 500,
+            "reasonPhrase": "Internal Server Error",
+            "headers": {
+              "Content-Type": "text/plain"
+            },
+            "body": {
+              "text": "ERROR: unterminated quoted string at or near \"'\" (SQLSTATE 42601)"
+            }
+          },
+          "properties": {
+            "flux/status": "candidate",
+            "flux/replayIds": [
+              "ex-1042",
+              "ex-1043"
+            ],
+            "flux/redacted": true,
+            "flux/fingerprintVersion": "flux/dast/v1"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "informationUri": "https://cwe.mitre.org/"
+        }
+      ]
+    }
+  ]
+}

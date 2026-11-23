@@ -50,15 +50,20 @@ TDD, same as the rest of Kudzu:
 
 ## Status
 
-Spec draft v0.2. No crate code yet. First steps:
+Spec draft v0.4. Crate v0.1.0: `Finding` / `Report` (SARIF round-trip,
+unknown fields kept), `flux/dast/v1` and `flux/sast/v1` fingerprints,
+`validate` (the flux rules; SARIF schema validation runs in the tests
+against `schema/sarif-schema-2.1.0.json`), and golden `examples/`.
+Next:
 
-1. Cargo scaffold; evaluate an existing SARIF types crate
-   (e.g. `serde-sarif`) vs. hand-written types for the profile subset.
-2. `Finding` and friends, SARIF round-trip.
-3. Fingerprints.
-4. Redaction.
-5. Validator (function + small CLI).
-6. `examples/` golden files for each flow in `SPEC.md`.
+1. Redaction (headers, bodies, URLs; JWT / bearer / API-key patterns),
+   with tests for each.
+2. Validator CLI (and a runtime SARIF schema check behind a feature).
+3. `schema/flux-properties.schema.json`.
+
+Dependencies: core is `serde`, `serde_json`, `sha2` only. New ones
+(transitive included) at least two weeks old; pin with
+`cargo update --precise`. `jsonschema` is a dev-dependency.
 
 ## Provenance
 

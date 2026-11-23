@@ -1,0 +1,19 @@
+[package]
+name = "flux"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.90"
+description = "flux: a SARIF 2.1.0 profile for Kudzu. Finding types, fingerprints and validation."
+license = "MIT"
+repository = "https://github.com/cschooley/flux"
+publish = false
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.11"
+
+[dev-dependencies]
+# Validates examples and output against the official SARIF 2.1.0 schema
+# (schema/sarif-schema-2.1.0.json). Tests only: never a core dependency.
+jsonschema = { version = "=0.61.0", default-features = false }

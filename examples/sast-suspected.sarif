@@ -1,0 +1,85 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/errata01/os/schemas/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "scurf",
+          "version": "0.1.0",
+          "rules": [
+            {
+              "id": "rust/sql-injection",
+              "shortDescription": {
+                "text": "SQL built from request data"
+              },
+              "relationships": [
+                {
+                  "target": {
+                    "id": "89",
+                    "toolComponent": {
+                      "name": "CWE"
+                    }
+                  },
+                  "kinds": [
+                    "relevant"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "rust/sql-injection",
+          "level": "error",
+          "rank": 70,
+          "message": {
+            "text": "sort reaches format!() in a SQL string in list_products."
+          },
+          "fingerprints": {
+            "flux/sast/v1": "6b7e0344f4e25ab07353d97f2ba146a6d821b34bc506df6ea9c6531a67742c2d"
+          },
+          "correlationGuid": "3b0c8f0e-6a52-4c1e-9d0a-2f6a1b7c9e41",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/catalog.rs"
+                },
+                "region": {
+                  "startLine": 88
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "list_products",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "taxa": [
+            {
+              "id": "89",
+              "toolComponent": {
+                "name": "CWE"
+              }
+            }
+          ],
+          "properties": {
+            "flux/status": "suspected",
+            "flux/fingerprintVersion": "flux/sast/v1"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "informationUri": "https://cwe.mitre.org/"
+        }
+      ]
+    }
+  ]
+}
